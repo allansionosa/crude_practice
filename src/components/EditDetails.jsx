@@ -3,31 +3,30 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const EditDetails = () => {
   const { ptid } = useParams();
-
-  const fetchData = () => {
-    fetch("http://localhost:3000/posts/" + ptid)
-      .then((res) => res.json())
-      .then((json) => {
-        setId(json.id);
-        setName(json.name);
-        setEmail(json.email);
-        setPhone(json.phone);
-        setConcern(json.concern);
-      })
-      .catch((e) => {
-        console.log("error", e);
-      });
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [concern, setConcern] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/posts/" + ptid);
+        const json = await res.json();
+        setId(json.id);
+        setName(json.name);
+        setEmail(json.email);
+        setPhone(json.phone);
+        setConcern(json.concern);
+      } catch (e) {
+        console.log("error", e);
+      }
+    };
+
+    fetchData();
+  }, [ptid]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -138,8 +137,8 @@ export const EditDetails = () => {
               Submit
             </button>
             <button
-              type="submit"
-              className=" justify-end bg-red-500 py-2 px-6 text-sm font-medium text-white rounded-md cursor-pointer"
+              type="button"
+              className="justify-end bg-red-500 py-2 px-6 text-sm font-medium text-white rounded-md cursor-pointer"
             >
               <Link to="/">Exit</Link>
             </button>

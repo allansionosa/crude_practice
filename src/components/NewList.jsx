@@ -47,6 +47,7 @@ export const NewList = ({ dataList, dataLists }) => {
               ID:
             </label>
             <input
+              required
               type="text"
               name="id"
               value={id}
@@ -59,6 +60,7 @@ export const NewList = ({ dataList, dataLists }) => {
               Name:
             </label>
             <input
+              required
               type="text"
               name="name"
               value={name}
@@ -71,6 +73,7 @@ export const NewList = ({ dataList, dataLists }) => {
               Email:
             </label>
             <input
+              required
               type="text"
               name="email"
               value={email}
@@ -83,6 +86,7 @@ export const NewList = ({ dataList, dataLists }) => {
               Phone:
             </label>
             <input
+              required
               type="number"
               name="phone"
               value={phone}
@@ -115,7 +119,7 @@ export const NewList = ({ dataList, dataLists }) => {
               Submit
             </button>
             <button
-              type="submit"
+              type="button"
               className=" justify-end bg-red-500 py-2 px-6 text-sm font-medium text-white rounded-md cursor-pointer"
             >
               <Link to="/">Exit</Link>

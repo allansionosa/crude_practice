@@ -5,19 +5,19 @@ export const PatientDetails = () => {
   const { ptid } = useParams();
   const [dataList, setDataList] = useState({});
 
-  const fetchData = async () => {
-    await fetch("http://localhost:3000/posts/" + ptid)
-      .then((res) => res.json())
-      .then((json) => {
-        setDataList(json);
-      })
-      .catch((e) => {
-        console.log("error", e);
-      });
-  };
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/posts/" + ptid);
+        const json = await res.json();
+        setDataList(json);
+      } catch (e) {
+        console.log("error", e);
+      }
+    };
+
     fetchData();
-  }, []);
+  }, [ptid]);
   return (
     <>
       <div className=" border border-blue-600 px-5 py-5 max-w-2xl m-auto grid gap-5 font-Quicksand mt-5">
