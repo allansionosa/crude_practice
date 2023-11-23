@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-export const EditDetails = ({ dataList, dataLists }) => {
+export const EditDetails = () => {
   const { ptid } = useParams();
 
   const fetchData = () => {
@@ -44,7 +44,7 @@ export const EditDetails = ({ dataList, dataLists }) => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(patientData),
     })
-      .then((res) => {
+      .then(() => {
         alert("Saved Succesfully.");
 
         navigate("/");
